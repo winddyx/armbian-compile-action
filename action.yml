@@ -12,6 +12,9 @@ inputs:
   kernel_branch:
     required: false
     default: 'current'
+  armbian_ref:
+    required: false
+    default: 'v26.2.1'
   artifacts:
     required: false
     default: 'false'
@@ -33,6 +36,7 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: armbian/build
+        ref: ${{ inputs.armbian_ref }}
         path: build
     - name: Set env
       shell: bash

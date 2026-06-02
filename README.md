@@ -23,6 +23,7 @@ GitHub Action for Armbian [`compile.sh`](https://github.com/armbian/build).
 | `suite` | ❌ | — | Override release name (e.g. `trixie`, `bookworm`, `noble`). When empty, maps `debian→bullseye`, `ubuntu→jammy` |
 | `flavor` | ✅ | — | `cli` for minimal headless, or desktop name (`kde`, `cinnamon`, etc.) |
 | `kernel_branch` | ❌ | `current` | Kernel branch (`current`, `edge`, `vendor`) |
+| `armbian_ref` | ❌ | `v26.2.1` | Armbian build framework git ref (tag/branch/commit) |
 | `artifacts` | ❌ | `false` | Upload built images as workflow artifacts |
 | `release-id` | ❌ | — | GitHub Release ID to upload to |
 | `github-token` | ❌ | — | `${{ secrets.GITHUB_TOKEN }}` for release upload |
