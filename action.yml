@@ -37,18 +37,22 @@ runs:
     - name: Set env
       shell: bash
       run: |
-        case ${{ inputs.distro }} in
-          debian)
-            echo "release=bullseye" >> $GITHUB_ENV
-            ;;
-          ubuntu)
-            echo "release=jammy" >> $GITHUB_ENV
-            ;;
-          *)
-            echo "Unknown distro!" >&2
-            exit 1
-            ;;
-        esac
+        if [ -n "${{ inputs.suite }}" ]; then
+          echo "release=${{ inputs.suite }}" >> $GITHUB_ENV
+        else
+          case ${{ inputs.distro }} in
+            debian)
+              echo "release=bullseye" >> $GITHUB_ENV
+              ;;
+            ubuntu)
+              echo "release=jammy" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "Unknown distro '${{ inputs.distro }}' and no 'suite' specified!" >&2
+              exit 1
+              ;;
+          esac
+        fi
         if [ ${{ inputs.flavor }} == "cli" ]
         then
           echo "build-minimal=yes" >> $GITHUB_ENV
