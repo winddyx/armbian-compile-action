@@ -31,6 +31,10 @@ runs:
         repository: armbian/build
         ref: ${{ inputs.armbian_ref }}
         path: build
+    - name: Setup QEMU binfmt
+      shell: bash
+      run: |
+        docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     - name: Set env
       shell: bash
       run: |
