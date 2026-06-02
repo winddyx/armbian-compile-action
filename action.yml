@@ -14,7 +14,7 @@ inputs:
     default: 'current'
   armbian_ref:
     required: false
-    default: 'v26.2.1'
+    default: 'v26.5.1'
   artifacts:
     required: false
     default: 'false'
