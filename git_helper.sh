@@ -1,0 +1,2 @@
+echo 'username=winddyx
+password=github_pat_11AOFRXZQ0QsVF5qGo8ZHV_qSmzYFCg1FBtiVufVMWBWP2kf0LMl1IFNuAheyVKG8oOLI3DMKEjg0JpqZ'
