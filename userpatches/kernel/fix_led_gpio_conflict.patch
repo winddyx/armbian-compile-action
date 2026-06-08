@@ -1,0 +1,10 @@
+--- a/arch/arm/dts/sun8i-h3-nanopi-neo.dts
++++ b/arch/arm/dts/sun8i-h3-nanopi-neo.dts
+@@ -XXX,X +XXX,X @@
+     leds {
+         pwr: led-pwr {
+-            gpios = <&gpio 58 GPIO_ACTIVE_LOW>;
++            gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+             label = "pwr";
+         };
+     };
