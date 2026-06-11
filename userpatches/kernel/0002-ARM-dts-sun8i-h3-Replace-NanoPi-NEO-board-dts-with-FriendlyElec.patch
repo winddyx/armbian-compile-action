@@ -1,0 +1,108 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Hermes Agent <hermes@nousresearch.com>
+Date: Thu, 12 Jun 2026 00:00:00 +0000
+Subject: ARM: dts: sun8i-h3: Replace NanoPi-NEO board dts with FriendlyElec
+ version
+
+Replace the board-level device tree for NanoPi-NEO with the FriendlyElec
+version. The board dts is kept minimal (just include the common dtsi +
+enable EMAC with MII PHY), since all peripherals (USB, UART, I2C, SPI,
+HDMI, audio, LEDs, etc.) are configured in the shared dtsi.
+
+Changes vs upstream:
+- Model: "FriendlyElec NanoPi-NEO" (was "FriendlyARM NanoPi NEO")
+- Compatible: friendlyelec,nanopi-neo (was friendlyarm,nanopi-neo)
+- Removed board-level ehci0/ohci0/usb_otg/usbphy — these are now in dtsi
+- Removed board-level aliases — these are now in dtsi
+- Kept only EMAC with MII PHY and allwinner,leds-active-low
+
+---
+ arch/arm/boot/dts/allwinner/sun8i-h3-nanopi-neo.dts | 41 +++------------------
+ 1 file changed, 5 insertions(+), 56 deletions(-)
+
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-h3-nanopi-neo.dts b/arch/arm/boot/dts/allwinner/sun8i-h3-nanopi-neo.dts
+index df71fab3c..8be924ef6 100644
+--- a/arch/arm/boot/dts/allwinner/sun8i-h3-nanopi-neo.dts
++++ b/arch/arm/boot/dts/allwinner/sun8i-h3-nanopi-neo.dts
+@@ -1,58 +1,17 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
+  * Copyright (C) 2016 James Pettigrew <james@innovum.com.au>
+  *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
++ * Adapted from FriendlyElec's sun8i-h3-nanopi-neo.dts (kernel 4.14.111)
++ * for mainline kernel 6.x compatibility.
+  */
+ 
++/dts-v1/;
+ #include "sun8i-h3-nanopi.dtsi"
+ 
+ / {
+-	model = "FriendlyARM NanoPi NEO";
+-	compatible = "friendlyarm,nanopi-neo", "allwinner,sun8i-h3";
+-
+-	aliases {
+-		ethernet0 = &emac;
+-	};
+-};
+-
+-&ehci0 {
+-	status = "okay";
++	model = "FriendlyElec NanoPi-NEO";
++	compatible = "friendlyelec,nanopi-neo", "allwinner,sun8i-h3";
+ };
+ 
+ &emac {
+@@ -61,16 +20,3 @@ &emac {
+ 	allwinner,leds-active-low;
+ 	status = "okay";
+ };
+-
+-&ohci0 {
+-	status = "okay";
+-};
+-
+-&usb_otg {
+-	status = "okay";
+-	dr_mode = "peripheral";
+-};
+-
+-&usbphy {
+-	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
+-};
