@@ -2,16 +2,20 @@ name: 'Armbian/build'
 description: 'Armbian Linux build framework'
 inputs:
   board:
-    required: true
+    required: false
+    default: 'nanopineo'
   distro:
-    required: true
+    required: false
+    default: 'debian'
   suite:
     required: false
+    default: 'trixie'
   flavor:
-    required: true
+    required: false
+    default: 'cli'
   kernel_branch:
     required: false
-    default: 'current'
+    default: 'edge'
   armbian_ref:
     required: false
     default: 'v26.5.1'
