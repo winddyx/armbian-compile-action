@@ -10,9 +10,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: winddyx/armbian-compile-action@main
-        with:
-          board: nanopineo
-          distro: debian
-          suite: trixie
-          flavor: cli
-          artifacts: 'true'

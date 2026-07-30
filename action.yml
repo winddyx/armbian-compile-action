@@ -21,7 +21,7 @@ inputs:
     default: 'v26.5.1'
   artifacts:
     required: false
-    default: 'false'
+    default: 'true'
   release-id:
     required: false
   github-token:
